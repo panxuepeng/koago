@@ -1,8 +1,8 @@
 
-var common = require("../common/index")
 
 module.exports = {
-	wellcome: function *() {
-		this.body = 'hello world! ' + common.encrypt.md5('')
+	wellcome: function *(next) {
+		this.logger.debug('aa')
+		this.body = 'hello world! ' + this.util.md5('')
 	}
 }

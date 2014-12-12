@@ -3,24 +3,29 @@ var mongoose = require('mongoose')
 	, util = require("util")
 	, events = require("events")
 	, _ = require('underscore')
-	
-console.log('common')
+	, conf = global.app.conf
 
+// 支持自定义事件
+// http://nodejs.org/api/util.html#util_util_inherits_constructor_superconstructor
 var Event = function() {
 	events.EventEmitter.call(this)
 }
 util.inherits(Event, events.EventEmitter)
 
-exports.event = new Event
-exports._ = _
 
-exports.encrypt = require('./encrypt')
 //	C.mail = require('./mail').init(config)
-//	C.redis = require('./redis').init(config.redis)
-//	C.logger = require('./log4js').init(config.log4js)
 
-exports.model = function (name) {
+var model = function (name) {
 	return mongoose.model(name)
 }
 
-exports.mongoose = mongoose
+exports = {
+	_: _
+	, event: new Event
+	, mongoose: mongoose
+	, model: model
+//	, log: require('./log4js').init(conf.log4js)
+}
+//_.extend(exports, require('./encrypt'))
+
+module.exports = exports

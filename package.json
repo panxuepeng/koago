@@ -14,9 +14,12 @@
     "koa-router": "latest",
 	"koa-compress": "latest",
 	"koa-better-body": "latest",
+	"koa-generic-session": "latest",
+	"koa-redis": "latest",
 	
     "mongoose": "latest",
 	"redis": "latest",
+	"koa-redis-pool": "latest",
     "underscore": "latest",
     
     "dateformat": "latest",
