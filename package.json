@@ -17,7 +17,8 @@
 	"koa-generic-session": "latest",
 	"koa-redis": "latest",
 	
-    "mongoose": "latest",
+    "mongoose": "3.9.*",
+    "koa-pooled-mongo": "latest",
 	"redis": "latest",
 	"koa-redis-pool": "latest",
     "underscore": "latest",

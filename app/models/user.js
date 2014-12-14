@@ -47,8 +47,7 @@ UserSchema.path('mobile').validate(function(value){
  * Methods
  */
 UserSchema.methods = {
-
-
+	
 }
 
 UserSchema.statics = {

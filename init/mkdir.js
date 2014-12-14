@@ -19,10 +19,8 @@ module.exports = function(app) {
 }
 
 function mkdir(path) {
-	if( shell.test('-d', path) ){
-		console.log('目录 '+ path + ' 已存在')
-	} else {
+	if( !shell.test('-d', path) ){
 		shell.mkdir('-p', path)
-		console.log('创建了目录 '+ path)
+		console.log('mkdir '+ path)
 	}
 }

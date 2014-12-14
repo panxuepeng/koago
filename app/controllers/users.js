@@ -1,5 +1,6 @@
 
-var User = require('mongoose').model('User')
+var mongoose = require('mongoose')
+var User = mongoose.model('User')
 
 module.exports = {
 	create: function* (next) {
@@ -10,15 +11,20 @@ module.exports = {
 		}
 
 		var user = new User(data)
-		
-		user.save(function *(err) {
-			
-			if (err) {
-				ctx.body = ['error', err]
-			} else {
-				ctx.body = ['success', 'user create success']
-			}
-		})
+		/*
+		yield function() {
+			console.log('save')
+			user.save()
+		}
+		//yield user.add()
+		this.body = user
+		*/
+		//console.dir(user)
+		var collection = yield this.mongo.collection('users');
+		var results = yield collection.save({ _id: 1, name: 'koa-pooled-mongo' });
+		console.log(results);
+		var one = yield collection.find({});
+		console.log(one);
 	},
 	login: function *(next) {
 		var ctx = this

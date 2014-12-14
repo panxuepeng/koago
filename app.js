@@ -2,19 +2,12 @@
 var glob = require("glob")
 var dateFormat = require('dateformat')
 var koa = require('koa')
-var redisPool = require('koa-redis-pool')
-var session = require('koa-generic-session')
-var redisStore = require('koa-redis')
 
 var app = koa()
 global.app = app
 
 app.name = 'koago'
 app.keys = ['keys', 'keykeys']
-
-app.use(session({
-  store: redisStore()
-}))
 
 // 启动（在配置文件加载之前）
 require("./bootstrap/index")(app)
@@ -24,9 +17,6 @@ require("./config/index")(app)
 
 // 初始化（在配置文件加载之后）
 require("./init/index")(app)
-
-// redis
-app.use(redisPool(app.conf.redis))
 
 //require("./app/common/index")
 
